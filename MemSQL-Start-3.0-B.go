@@ -2,32 +2,23 @@ package main
 
 import (
 	"fmt"
+	"math"
 )
 
-var n int64
-var k int
+var n int
 
 func main() {
-	fmt.Scanf("%d %d", &n, &k)
-	cnt2 := 0
-	cnt5 := 0
-	res := n
-	for {
-		if cnt5 >= k || res%5 != int64(0) {
-			break
+	fmt.Scan(&n)
+	sqt := math.Sqrt(float64(n))
+	hight := int(sqt)
+	width := 0
+	if hight*hight == n {
+		width = hight
+	} else {
+		width = hight + 1
+		if hight*width < n {
+			hight += 1
 		}
-		res = res / 5
-		cnt5++
 	}
-	for {
-		if cnt2 >= k || res%2 != int64(0) {
-			break
-		}
-		res = res / 2
-		cnt2++
-	}
-	for i := 0; i < k; i++ {
-		res = res * 10
-	}
-	fmt.Println(res)
+	fmt.Println(hight*2 + width*2)
 }
